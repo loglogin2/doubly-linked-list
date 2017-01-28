@@ -4,7 +4,6 @@ class LinkedList {
     constructor() {
         this._head = new Node(null, null, null);
         this._tail = new Node(null, null, null);
-        //this._tail = null;
         this.length = 0;
     }
 
@@ -55,7 +54,6 @@ class LinkedList {
     }
 
     insertAt(index, data) {
-
         var currentNode = this._head;
         var newNode = new Node(data,null,null)
 
@@ -87,7 +85,6 @@ class LinkedList {
     }
 
     clear() {
-
         var currentNode = this._head;
         var nextNode = currentNode.next;
 
@@ -120,13 +117,25 @@ class LinkedList {
             }
             currentNode = currentNode.next;
         }
+        return this;
     }
 
     reverse() {
+        var currentNodeHead = this._head;
+        var currentNodeTail = this._tail;
+
+        for ( var i = 0 ; i < ( this.length / 2) ; i ++ )
+        {
+            var temp = currentNodeTail.data;
+            currentNodeTail.data = currentNodeHead.data;
+            currentNodeHead.data = temp;
+            currentNodeHead = currentNodeHead.next;
+            currentNodeTail = currentNodeTail.prev;
+        }
+        return this;
     }
 
     indexOf(data) {
-
         var currentNode = this._head ;
         var check = false;
 
