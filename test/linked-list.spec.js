@@ -94,20 +94,20 @@ describe('LinkedList', () => {
         });
     });
 
-    // describe('#clear', () => {
-    //     it('should clear the list', () => {
-    //         const list = new LinkedList();
-    //
-    //         list.append(32);
-    //         list.append(47);
-    //
-    //         list.clear();
-    //
-    //         expect(list.head()).to.equal(null);
-    //         expect(list.tail()).to.equal(null);
-    //         expect(list.length).to.equal(0);
-    //     });
-    // });
+    describe('#clear', () => {
+        it('should clear the list', () => {
+            const list = new LinkedList();
+
+            list.append(32);
+            list.append(47);
+
+            list.clear();
+
+            expect(list.head()).to.equal(null);
+            expect(list.tail()).to.equal(null);
+            expect(list.length).to.equal(0);
+        });
+    });
     describe('#deleteAt', () => {
         it('should delete element by index', () => {
             const list = new LinkedList();

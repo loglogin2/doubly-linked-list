@@ -87,6 +87,15 @@ class LinkedList {
     }
 
     clear() {
+        var currentNode = this._tail;
+
+        for ( var i = this.length ; i > 1 ; i-- )
+        {
+            currentNode = currentNode.prev;
+            currentNode.next = null;
+        }
+        this._head = null;
+        this.length = 0 ;
     }
 
     deleteAt(index) {
@@ -96,14 +105,29 @@ class LinkedList {
         {
             if( i == index )
             {
-
+                currentNode.next.prev = currentNode.prev;
+                currentNode.prev.next = currentNode.next;
             }
-            console.log(currentNode);
             currentNode = currentNode.next;
         }
     }
 
     reverse() {
+
+        var currentNode = this._head;
+        for ( var i = 0 ; i < this.length -1   ; i ++ )
+        {
+            var temp = currentNode.next;
+            currentNode.next = currentNode.prev;
+            currentNode.prev= temp;
+            currentNode = currentNode.prev;
+        }
+
+        for ( var i = 0 ; i < this.length ; i ++ )
+        {
+            console.log(currentNode.data);
+            currentNode = currentNode.prev;
+        }
     }
 
     indexOf(data) {
