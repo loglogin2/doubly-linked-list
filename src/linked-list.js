@@ -87,15 +87,25 @@ class LinkedList {
     }
 
     clear() {
-        var currentNode = this._tail;
 
-        for ( var i = this.length ; i > 1 ; i-- )
+        var currentNode = this._head;
+        var nextNode = currentNode.next;
+
+        for ( var i = 0 ; i < this.length ; i++ )
         {
-            currentNode = currentNode.prev;
+            currentNode.data = null;
+            currentNode.prev = null;
             currentNode.next = null;
+
+            if ( nextNode != null)
+            {
+                currentNode = nextNode;
+                nextNode = nextNode.next;
+            }
         }
-        this._head = null;
-        this.length = 0 ;
+
+        this.length = 0;
+        return this;
     }
 
     deleteAt(index) {
@@ -113,27 +123,13 @@ class LinkedList {
     }
 
     reverse() {
-
-        var currentNode = this._head;
-        for ( var i = 0 ; i < this.length -1   ; i ++ )
-        {
-            var temp = currentNode.next;
-            currentNode.next = currentNode.prev;
-            currentNode.prev= temp;
-            currentNode = currentNode.prev;
-        }
-
-        for ( var i = 0 ; i < this.length ; i ++ )
-        {
-            console.log(currentNode.data);
-            currentNode = currentNode.prev;
-        }
     }
 
     indexOf(data) {
 
         var currentNode = this._head ;
         var check = false;
+
         for ( var i = 0 ; i < this.length ; i ++)
         {
             if(data == currentNode.data)
