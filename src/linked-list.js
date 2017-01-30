@@ -55,22 +55,22 @@ class LinkedList {
 
     insertAt(index, data) {
         var currentNode = this._head;
-        var newNode = new Node(data,null,null)
+        var newNode = new Node(data, null, null)
 
-        for ( var  i = 0 ; i < this.length ; i ++ )
-        {
-            if ( i == index - 1)
+            for (var i = 0; i < this.length; i++)
             {
-                newNode.prev = currentNode;
-                newNode.next = currentNode.next;
-                currentNode.next.prev = newNode;
-                currentNode.next = newNode;
+                if (i == index - 1)
+                {
+                    newNode.prev = currentNode;
+                    newNode.next = currentNode.next;
+                    currentNode.next.prev = newNode;
+                    currentNode.next = newNode;
 
-                this.length++;
+                    this.length++;
+                }
+                currentNode = currentNode.next;
             }
-            currentNode = currentNode.next;
-        }
-        return this;
+            return this;
     }
 
     isEmpty() {
@@ -85,24 +85,13 @@ class LinkedList {
     }
 
     clear() {
-        var currentNode = this._head;
-        var nextNode = currentNode.next;
 
-        for ( var i = 0 ; i < this.length ; i++ )
-        {
-            currentNode.data = null;
-            currentNode.prev = null;
-            currentNode.next = null;
+            this._head = new Node (null,null,null);
+            this._tail = new Node (null,null,null);
+            this.length = 0;
 
-            if ( nextNode != null)
-            {
-                currentNode = nextNode;
-                nextNode = nextNode.next;
-            }
-        }
+            return this;
 
-        this.length = 0;
-        return this;
     }
 
     deleteAt(index) {
@@ -112,8 +101,16 @@ class LinkedList {
         {
             if( i == index )
             {
-                currentNode.next.prev = currentNode.prev;
-                currentNode.prev.next = currentNode.next;
+                if( i == 0 )
+                {
+                    this._head = currentNode.next;
+                }
+                else
+                {
+                    currentNode.next.prev = currentNode.prev;
+                    currentNode.prev.next = currentNode.next;
+                }
+                this.length-- ;
             }
             currentNode = currentNode.next;
         }
